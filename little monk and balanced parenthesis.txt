@@ -1,0 +1,30 @@
+def checker(stack):
+    arr=[];counter=0;count=[];
+    while len(stack)!=0:
+        element=stack.pop();
+        if element<0:
+            arr.append(element);
+        elif element>0 and arr!=[]:
+            if element==abs(arr[-1]):
+                counter+=1;
+                arr.pop();count.append(counter);
+            else:
+                count.append(counter);
+                counter=0;
+                arr=[];
+        else:
+            counter=0;
+    #print(count)
+    if len(count)==0:
+        return 0
+    else:
+        return 2*max(count);
+ 
+def main():
+    n=int(input());
+    stack=list(map(int,input().split()));
+    val=checker(stack);
+    print(val);
+ 
+if __name__ == "__main__":
+    main();

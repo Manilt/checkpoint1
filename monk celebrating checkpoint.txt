@@ -1,0 +1,33 @@
+n,x,k = map(int, input().split())
+pilaMin, pilaMax, rangoMin, rangoMax, diff = [(-10**7, -1)], [(10**7, -1)], [], [], []
+a = list(map(int, input().split()))
+for i in range(len(a)):
+    val = a[i]
+    while val <= pilaMin[-1][0]: pilaMin.pop()
+    while val >= pilaMax[-1][0]: pilaMax.pop()
+    rangoMin.append(i - pilaMin[-1][1])
+    rangoMax.append(i - pilaMax[-1][1])
+    pilaMin.append((val,i))
+    pilaMax.append((val,i))
+res = 0
+pilaMin, pilaMax = [(-10**7, len(a))], [(10**7, len(a))]
+mm,nn = 0,0
+for i in range(len(a)-1,-1,-1):
+    val = a[i]
+    while val < pilaMin[-1][0]: pilaMin.pop()
+    while val > pilaMax[-1][0]: pilaMax.pop()
+    minLen, maxLen = rangoMin[i]*(pilaMin[-1][1]-i), rangoMax[i]*(pilaMax[-1][1]-i)
+    mm += minLen
+    nn += maxLen
+    res += val*maxLen - val*minLen
+    diff.append(maxLen-minLen)
+    pilaMin.append((val,i))
+    pilaMax.append((val,i))
+diff.sort()
+for i in range(len(diff)-1,-1,-1):
+    if x < 1 or diff[i] <= 0:
+        break
+    res += diff[i]
+    x -= 1
+ 
+print(res)

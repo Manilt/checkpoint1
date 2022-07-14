@@ -1,0 +1,31 @@
+from sys import stdin,stdout
+#Mod=1000000007
+#for _ in range(int(stdin.readline().strip())):
+    #s=stdin.readline().strip()
+    #n=int(stdin.readline().strip())
+    #for i in range(n):
+    #for i in map(int,stdin.readline().split()):
+n,m=map(int,stdin.readline().split())
+ar=[]
+for i in range(n):
+    ar.append(list(map(int,stdin.readline().split())))
+v1,v2,v3,v4=map(int,stdin.readline().split())
+s1=0
+for i in range(n):
+    t1,t2=0,0
+    t3=abs(v2)*m
+    for j in range(m):
+        t1+=abs(ar[i][j])
+        t2+=abs(ar[i][j]+v1)
+    #print(t1,t2,t3)
+    s1+=max(t1,t2,t3)
+s2=0
+for i in range(m):
+    t1,t2=0,0
+    t3=abs(v4)*n
+    for j in range(n):
+        t1+=abs(ar[j][i])
+        t2+=abs(ar[j][i]+v3)
+    #print(t1,t2,t3)
+    s2+=max(t1,t2,t3)
+print(max(s1,s2))

@@ -1,0 +1,23 @@
+
+ 
+name = input()                  # Reading input from STDIN
+print('Hi, %s.' % name)         # Writing output to STDOUT
+ 
+t=input()
+ 
+for i in range(int(t)):
+    le=input()
+    li=list(map(int,input().split()))
+    a=min(li)
+    count=0
+    for j in range(int(le)):
+        if(li[j]==a):
+            count=count+1
+        
+    if(count%2 !=0):
+        print("Lucky")
+ 
+    else:
+        print("Unlucky")
+ 
+#print(li)
